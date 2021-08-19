@@ -1,5 +1,7 @@
 package lab1;
 
+import lombok.Data;
+
 import java.util.Arrays;
 
 public class MySuperIntegerList implements SuperIntegerList {
@@ -12,6 +14,8 @@ public class MySuperIntegerList implements SuperIntegerList {
         curLength = 1;
         lastIndex = 0;
     }
+
+
 
     @Override
     public void add(int number) {
