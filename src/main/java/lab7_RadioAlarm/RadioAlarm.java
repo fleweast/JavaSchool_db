@@ -2,22 +2,22 @@ package lab7_RadioAlarm;
 
 public class RadioAlarm implements Alarm, Radio{
     @Override
-    public void A() {
+    public void a() {
         System.out.println("A");
     }
 
     @Override
-    public void B() {
+    public void b() {
         System.out.println("B");
     }
 
     @Override
-    public void C() {
+    public void c() {
         System.out.println("C");
     }
 
     @Override
-    public void D() {
+    public void d() {
         System.out.println("D");
     }
 }
