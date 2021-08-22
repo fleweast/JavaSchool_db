@@ -1,9 +1,13 @@
 package lab3;
 
+import lab3.characters.Hero;
+import lab3.infra.HeroFactory;
+import lab3.infra.SimpleHeroFactory;
+
 public class MainHeroes {
     public static void main(String[] args) {
 
-        HeroFactory heroFactory = new HeroFactory();
+        SimpleHeroFactory heroFactory = new SimpleHeroFactory();
         Hero hero1 =heroFactory.createHero();
         Hero hero2 =heroFactory.createHero();
 
