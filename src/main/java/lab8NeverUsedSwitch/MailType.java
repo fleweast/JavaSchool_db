@@ -3,11 +3,10 @@ package lab8NeverUsedSwitch;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
-@RequiredArgsConstructor
 
-public enum MailType {
-    TYPE_1(1, new WelcomeMail()), TYPE_2(2, new BDayMail());
+
+/*public enum MailType {
+   // TYPE_1(1, new WelcomeMail()), TYPE_2(2, new BDayMail());
     private final int type;
 
     public static MailType determineType(int inputType) {
@@ -25,3 +24,4 @@ public enum MailType {
         return super.toString();
     }
 }
+ */
