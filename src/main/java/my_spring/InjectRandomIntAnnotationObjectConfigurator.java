@@ -1,6 +1,6 @@
 package my_spring;
 
-import lab3.utils.RandomUtil;
+import heroGame.utils.RandomUtil;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
