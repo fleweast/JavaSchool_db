@@ -1,12 +1,19 @@
 package my_spring;
 
+/**
+ * @author Evgeny Borisov
+ */
 public class IRobot {
     @InjectByType
-    private Speaker speaker = ObjectFactory.getInstance().createObject(Speaker.class);
+    private Speaker speaker;
     @InjectByType
-    private Cleaner cleaner = ObjectFactory.getInstance().createObject(Cleaner.class);
+    private Cleaner cleaner;
 
-    public void cleanRoom(){
+    public void init() { //todo teach our framework to run all methods which starts with init
+        System.out.println(cleaner.getClass());
+    }
+
+    public void cleanRoom() {
         speaker.speak("Я начал работать");
         cleaner.clean();
         speaker.speak("Я закончил работать");

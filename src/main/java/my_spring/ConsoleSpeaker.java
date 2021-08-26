@@ -1,5 +1,8 @@
 package my_spring;
 
+/**
+ * @author Evgeny Borisov
+ */
 public class ConsoleSpeaker implements Speaker {
     private int volume;
     @Override

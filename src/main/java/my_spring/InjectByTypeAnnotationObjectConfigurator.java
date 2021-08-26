@@ -4,18 +4,22 @@ import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
 
+/**
+ * @author Evgeny Borisov
+ */
 public class InjectByTypeAnnotationObjectConfigurator implements ObjectConfigurator {
+
+
+
     @Override
     @SneakyThrows
     public void configure(Object t) {
-        Class<?> type = t.getClass();
-
-        for (Field field : type.getDeclaredFields()) {
+        Field[] fields = t.getClass().getDeclaredFields();
+        for (Field field : fields) {
             if (field.isAnnotationPresent(InjectByType.class)) {
-                Object fieldObject = ObjectFactory.getInstance().createObject(field.getType());
                 field.setAccessible(true);
-                field.set(t, fieldObject);
-                field.setAccessible(false);
+                Object object = ObjectFactory.getInstance().createObject(field.getType());
+                field.set(t, object);
             }
         }
     }

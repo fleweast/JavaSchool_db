@@ -4,31 +4,46 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author Evgeny Borisov
+ */
 public class ObjectFactory {
     @Getter
     private static ObjectFactory instance = new ObjectFactory();
     private Config config = new JavaConfig();
     private Reflections scanner = new Reflections("my_spring");
+
     private List<ObjectConfigurator> configurators = new ArrayList<>();
 
     @SneakyThrows
-    private ObjectFactory(){
-        for (Class<? extends ObjectConfigurator> a : scanner.getSubTypesOf(ObjectConfigurator.class)){
-            configurators.add(a.getDeclaredConstructor().newInstance());
+    public ObjectFactory() {
+        Set<Class<? extends ObjectConfigurator>> classes = scanner.getSubTypesOf(ObjectConfigurator.class);
+        for (Class<? extends ObjectConfigurator> aClass : classes) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                configurators.add(aClass.getDeclaredConstructor().newInstance());
+            }
         }
+
     }
 
     @SneakyThrows
     public <T> T createObject(Class<T> type) {
         type = resolveImple(type);
-
         T t = type.getDeclaredConstructor().newInstance();
-        configureObject(t);
+        configure(t);
+        callInit(t);
+
         return t;
+    }
+
+    private <T> void configure(T t) {
+        configurators.forEach(configurator -> configurator.configure(t));
     }
 
     private <T> Class<T> resolveImple(Class<T> type) {
@@ -46,9 +61,14 @@ public class ObjectFactory {
         return type;
     }
 
-    private   <T> void configureObject(T t){
-        for (ObjectConfigurator configurator: configurators){
-            configurator.configure(t);
+    @SneakyThrows
+    private <T> void callInit(T t){
+        for (Method method: t.getClass().getMethods()){
+            if (method.getName().startsWith("init")){
+                method.invoke(t);
+            }
         }
     }
+
+
 }
