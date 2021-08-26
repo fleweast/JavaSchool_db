@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
 
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +39,7 @@ public class ObjectFactory {
         callInit(t);
 
         return t;
+
     }
 
     private <T> void configure(T t) {

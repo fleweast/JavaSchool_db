@@ -1,4 +1,4 @@
-package ColorLab;
+package colorLab;
 
 import javax.swing.*;
 import java.awt.*;
