@@ -5,9 +5,6 @@ import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
 
-/**InjectByTypeAnnotationObjectConfigurator
- * @author Evgeny Borisov
- */
 public class InjectRandomIntAnnotationObjectConfigurator implements ObjectConfigurator {
     @Override
     @SneakyThrows

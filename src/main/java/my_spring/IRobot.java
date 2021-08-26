@@ -1,8 +1,5 @@
 package my_spring;
 
-/**
- * @author Evgeny Borisov
- */
 public class IRobot {
     @InjectByType
     private Speaker speaker;

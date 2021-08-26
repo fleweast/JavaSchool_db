@@ -6,9 +6,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Evgeny Borisov
- */
 @RequiredArgsConstructor
 @Getter
 public class ApplicationContext implements Context {

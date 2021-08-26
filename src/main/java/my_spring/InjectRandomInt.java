@@ -1,7 +1,4 @@
-package my_spring;/**
- * @author Evgeny Borisov
- */
-
+package my_spring;
 import java.lang.annotation.Retention;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

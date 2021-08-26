@@ -3,9 +3,6 @@ package my_spring;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Evgeny Borisov
- */
 public class JavaConfig implements Config {
 
     private Map<Class, Class> ifc2ImplClass = new HashMap<>();

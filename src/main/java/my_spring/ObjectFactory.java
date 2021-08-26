@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author Evgeny Borisov
- */
 public class ObjectFactory {
     @Getter
     private static ObjectFactory instance = new ObjectFactory();
