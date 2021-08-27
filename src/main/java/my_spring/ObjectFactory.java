@@ -19,6 +19,7 @@ public class ObjectFactory {
     private Reflections scanner = new Reflections("my_spring");
 
     private List<ObjectConfigurator> configurators = new ArrayList<>();
+    private List<ProxyConfigurator> proxyConfigurators = new ArrayList<>();
 
     @SneakyThrows
     public ObjectFactory() {
@@ -28,7 +29,10 @@ public class ObjectFactory {
                 configurators.add(aClass.getDeclaredConstructor().newInstance());
             }
         }
-
+        Set<Class<? extends ProxyConfigurator>> set = scanner.getSubTypesOf(ProxyConfigurator.class);
+        for (Class<? extends ProxyConfigurator> aClass : set) {
+            proxyConfigurators.add(aClass.getDeclaredConstructor().newInstance());
+        }
     }
 
     @SneakyThrows
@@ -37,7 +41,7 @@ public class ObjectFactory {
         T t = type.getDeclaredConstructor().newInstance();
         configure(t);
         callInit(t);
-
+        t = wrapWithProxyIfNeeded(type, t);
         return t;
 
     }
@@ -68,6 +72,13 @@ public class ObjectFactory {
                 method.invoke(t);
             }
         }
+    }
+
+    private <T> T wrapWithProxyIfNeeded(Class<T> type, T t) {
+        for (ProxyConfigurator proxyConfigurator : proxyConfigurators) {
+            t = (T) proxyConfigurator.configure(t, type);
+        }
+        return t;
     }
 
 
