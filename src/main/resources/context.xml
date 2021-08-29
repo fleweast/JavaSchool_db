@@ -3,17 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="real_spring.InjectRandomIntAnnotationBeanPostProcessor"/>
+        <bean class="real_spring.InjectRandomIntAnnotationBeanPostProcessor"/>
+
         <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
-
-
-
-
 
         <bean id="s" class="java.lang.String">
             <constructor-arg value="Trust me"/>
         </bean>
-
 
         <bean id="talkingRobot" class="real_spring.TalkingRobot">
 
@@ -29,7 +25,6 @@
             <property name="message" value="2 B || ! 2 B"/>
 
         </bean>
-
 
         <bean id="terminatorQuoter" class="real_spring.TerminatorQuoter" scope="prototype" destroy-method="terminate" >
             <property name="messages">

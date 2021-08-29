@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TalkingRobot {
 
-//    @InjectRandomName  //todo make it do something
+    @InjectRandomName
     private String name;
 
     @Setter
@@ -16,6 +16,7 @@ public class TalkingRobot {
 
     @PostConstruct
     public void talk(){
+        System.out.println(name);
         quoters.forEach(Quoter::sayQuote);
     }
 }
